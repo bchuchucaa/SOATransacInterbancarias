@@ -5,51 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 //material
-import { MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
-  MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule, MatSliderModule, 
-  MatSlideToggleModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { ConsultaComponent } from './components/consulta/consulta.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LogInComponent
+    LogInComponent,
+    InicioComponent,
+    ConsultaComponent
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MatCheckboxModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatInputModule,
-
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatStepperModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatButtonToggleModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule
+    AppRoutingModule
+   
 
     
   ],

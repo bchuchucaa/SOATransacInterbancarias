@@ -1,0 +1,87 @@
+nav{
+    background-color: tomato;
+
+    color:white;
+    height: 40px;
+    display: block;
+
+}
+td{
+    border-width: 3px;
+    font-size: 20px;
+   width: 20%;
+}
+
+.container{
+    border-style: solid;
+    border-width: 5px;
+    border-color: black;
+    border-radius: 10px;
+    width: 60%;
+    height: 510px;
+    margin: 12%;
+    background-color: #851e3e;
+    padding-left: 100px;
+  
+}
+div{
+  
+}
+label{
+
+ 
+}
+input{
+    margin: 20px;
+}
+body{
+    font-size: 19px;
+   
+    
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 50px 300px;
+    grid-template-rows: 200px 75px;
+  }
+
+  select{
+      margin: 10px;
+  }
+
+
+.transferirButton{
+    padding: 0 6px 0 6px;
+  margin: 6px 8px 6px 8px;
+  min-width: 88px;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration:none;
+  border: none;
+  outline: none;
+  color:white;
+  background-color: #051e3e;
+  height: 40px;
+  margin: top 18px;
+  margin-left: 24%;
+}
+.cancelarButton{
+    padding: 0 6px 0 6px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration:none;
+    border: none;
+    outline: none;
+    color:white;
+    background-color: #051e3e;
+    height: 40px;
+    margin: top 18px;
+    margin-left: 24%;
+}
