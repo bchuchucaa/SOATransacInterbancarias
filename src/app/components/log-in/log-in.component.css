@@ -1,12 +1,12 @@
 .container{
     border-style: solid;
-    border-width: 5px;
+    border-width: 3px;
     border-color: black;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 25%;
-    height: 220px;
+    height: 540px;
     margin-left: 32%;
-    margin-top: 20%;
+    margin-top: 5%;
     background-color: #851e3e;
     
 }
@@ -37,5 +37,32 @@
 }
 
 body{
+  background-image: url("../../../assets/wallpp.jpeg");
   background-color: teal;
+}
+.imgLogo{
+  width: 90%;
+  height: 250px;
+  margin: 5%;
+}
+.box{
+  margin: 8%;
+  background-color: #051e3e;
+  border-radius: 15px;
+  color: white;
+}
+
+label{
+  margin: 10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+input{
+  background-color: grey;
+  color: white
+}
+input:hover{
+ 
+    background-color: yellow;
+  
 }
