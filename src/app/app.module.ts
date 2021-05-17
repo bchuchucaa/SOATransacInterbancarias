@@ -8,6 +8,10 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { MatButtonModule } from '@angular/material/button';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ConsultaComponent } from './components/consulta/consulta.component';
+//client http
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -20,7 +24,10 @@ import { ConsultaComponent } from './components/consulta/consulta.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+ 
+   
    
 
     
