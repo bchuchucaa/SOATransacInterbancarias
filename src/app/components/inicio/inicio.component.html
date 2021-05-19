@@ -48,8 +48,9 @@
         </select>
         <br>
         <label>Numero de cuenta del beneficiario</label>
-        <input type="text" style="margin-left: 7px;"/>
-
+        <input  #numCuenta type="text" style="margin-left: 7px;"/>
+        <label>Valor</label>
+        <input  #valor type="text" style="margin-left: 7px;"/>
         <br>
         <label>Tipo de identificacion</label>
         <select name="cars" id="cars" style="margin-left: 20%;">
@@ -64,7 +65,7 @@
         <br>
         <label for="">Correo del beneficiario<input type="text" style="margin-left: 13%;"/></label>
         <br>
-        <button class="transferirButton">Transferir</button>
+        <button class="transferirButton" (click)="debitar(valor.value,numCuenta.value)">Transferir</button>
         <button class="cancelarButton">Cancelar</button>
     </div>
 

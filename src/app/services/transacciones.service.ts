@@ -1,20 +1,66 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Persona } from '../model/persona';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class TransaccionesService {
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+
+  conversion: any;
+  countries: Persona[] = [];
+  persona: any;
+
+  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
 
-  constructor(private http:HttpClient) { }
 
-login(usuario:string,password:string):Observable<any>{
+  async login(usuario: string, password: string) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      "usuario": usuario,
+      "password": password
+    });
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
+    fetch("http://localhost:8081/loginCooperativa", requestOptions)
+      .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+    console.log("json values " +localStorage.getItem("usuario"));
+  }
+  debitar(valor:string,numCuenta:string,idPersona:string){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      "valor": valor,
+      "numeroCuenta": numCuenta,
+      "idPersona":idPersona
+    });
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
+    fetch("http://localhost:8081/transferenciaRestarJep", requestOptions)
+    .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+  console.log("json values " +localStorage.getItem("usuario"));
+  }
+  acreditar(){
 
-return this.http.get<Persona[]>(`http://localhost:8080/Proveedor1-0.0.1/cooperativa/verificarUsuario?usuario=${usuario}+&password=${password}`);
-}
+  }
 
 
 }

@@ -14,12 +14,12 @@ td{
 
 .container{
     border-style: solid;
-    border-width: 5px;
+    border-width: px;
     border-color: black;
     border-radius: 10px;
     width: 60%;
     height: 510px;
-    margin: 12%;
+    margin: 2%;
     background-color: #851e3e;
     padding-left: 100px;
   
@@ -36,22 +36,17 @@ input{
 }
 body{
     font-size: 19px;
-   
-   
-    
+    background-image: url("../../../assets/wallpp.jpeg");
+    background-color: teal;   
 }
-
 .grid {
     display: grid;
     grid-template-columns: 50px 300px;
     grid-template-rows: 200px 75px;
   }
-
   select{
       margin: 10px;
   }
-
-
 .transferirButton{
     padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;

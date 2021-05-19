@@ -1,8 +1,13 @@
-export interface Persona {
-    id:string;
-    nombre:string;
-    apellido:string;
-    cedula:string;
-    usuario:string;
-    password:string;
+export class Persona {
+
+    constructor(
+        public id: string,
+        public nombre: string,
+        public apellido: string,
+        public cedula: string,
+        public usuario: string,
+        public password: string
+      ) {}
+
+
 }
