@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./consulta.component.css']
 })
 export class ConsultaComponent implements OnInit {
-
+  active = 'top';
   constructor() { }
 
   ngOnInit(): void {

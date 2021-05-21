@@ -7,21 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TransaccionesService {
+  bancoOrigen:any;
+  constructor(private http: HttpClient) { 
 
-  conversion: any;
-  countries: Persona[] = [];
-  persona: any;
-
-  constructor(private http: HttpClient) { }
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+    this.bancoOrigen=localStorage.getItem("bancoOrigen")?.toString;
   }
-
-
-
-  async login(usuario: string, password: string) {
+ 
+//METODO PARA LOGUEAR AL USUARIO DEPENDIENDO EL BANCO
+  async login(usuario: string, password: string,entidad:string) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
@@ -33,34 +26,53 @@ export class TransaccionesService {
       headers: myHeaders,
       body: raw
     };
-    fetch("http://localhost:8081/loginCooperativa", requestOptions)
+    fetch(`http://localhost:8081/loginSystem?entidad=${entidad}`, requestOptions)
       .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
     console.log("json values " +localStorage.getItem("usuario"));
   }
+  //METODO PARA DEBITAR DE UNA CUENTA
   debitar(valor:string,numCuenta:string,idPersona:string){
+  
+  }
+  //METODO PARA OPERACIONES
+  transaciones(valor:string,numCuenta:string,idPersona:string,entidad:string){
+    console.log("PERSPONA ORIGEN ID ",idPersona);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
       "valor": valor,
       "numeroCuenta": numCuenta,
       "idPersona":idPersona
+
     });
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
       body: raw
     };
-    fetch("http://localhost:8081/transferenciaRestarJep", requestOptions)
+     console.log("TRYING TO DO + OPERATION TO"+ entidad);
+     fetch(`http://localhost:8081/${entidad}/?operacion=sumar`, requestOptions)
     .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
+    if(localStorage.getItem("bancoOrigen")=="jep"){
+     
+      fetch(`http://localhost:8081/transaccionJep/?operacion=restar`, requestOptions)
+    .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+    }
+    
+    fetch(`http://localhost:8081/saveTransaccionsSystem?entidad=restar`, requestOptions)
+    .then(response => response.text().then(function(text){localStorage.setItem("usuario",text)}))
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+    
   console.log("json values " +localStorage.getItem("usuario"));
   }
-  acreditar(){
-
-  }
+  
 
 
 }

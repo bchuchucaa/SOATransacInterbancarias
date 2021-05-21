@@ -11,6 +11,8 @@ import { ConsultaComponent } from './components/consulta/consulta.component';
 //client http
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListTransfersComponent } from './components/list-transfers/list-transfers.component';
 
 
 
@@ -19,13 +21,15 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     LogInComponent,
     InicioComponent,
-    ConsultaComponent
+    ConsultaComponent,
+    ListTransfersComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgbModule,
 
  
    

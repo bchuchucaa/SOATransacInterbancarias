@@ -1,73 +1,62 @@
-<script>
-    // the selector will match all input controls of type :checkbox
-    // and attach a click event handler 
-    $("input:checkbox").on('click', function () {
-        // in the handler, 'this' refers to the box clicked on
-        var $box = $(this);
-        if ($box.is(":checked")) {
-            // the name of the box is retrieved using the .attr() method
-            // as it is assumed and expected to be immutable
-            var group = "input:checkbox[name='" + $box.attr("name") + "']";
-            // the checked state of the group/box on the other hand will change
-            // and the current value is retrieved using .prop() method
-            $(group).prop("checked", false);
-            $box.prop("checked", true);
-        } else {
-            $box.prop("checked", false);
-        }
-    });
+<header>
+    <div style="height: 140px;"></div>
+</header>
 
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<div>
-    <nav>
-        <td><a><a routerLink="../consulta" routerLinkActive="active">Consulta</a></a></td>
-        <td><a><a routerLink="../inicio" routerLinkActive="active">Transferencia</a></a></td>
-    </nav>
-</div>
 <body>
-    <div class="container">   
-        <h3>Tipo destino transferencia</h3>
-        <label>
-            <input type="checkbox" class="radio" value="1" name="fooby[2][]" />Cuenta en la cooperativa</label>
-        <label>
-            <input type="checkbox" class="radio" value="1" name="fooby[2][]" />Otras Instituciones</label>
-        <br>
-        <label for="cars">Tipo de cuenta</label>
-        <select name="cars" id="cars" style="margin-left: 20%;">
-            <option value="volvo">Cuenta de ahorros</option>
-            <option value="saab">Cuenta Corriente</option>
-        </select>
-        <br>
-        <label>Institucion financiera</label>
-        <select name="cars" id="cars" style="margin-left: 14%;">
-            <option value="volvo">BANCO DEL PACIFICO</option>
-            <option value="saab">BANCO DEL AUSTRO</option>
-            <option value="JEP">JEP</option>
-        </select>
-        <br>
-        <label>Numero de cuenta del beneficiario</label>
-        <input  #numCuenta type="text" style="margin-left: 7px;"/>
-        <label>Valor</label>
-        <input  #valor type="text" style="margin-left: 7px;"/>
-        <br>
-        <label>Tipo de identificacion</label>
-        <select name="cars" id="cars" style="margin-left: 20%;">
-            <option value="cedula">Cedula</option>
-            <option value="ruc">Ruc</option>
-        </select>
-        <br>
+    <div class="row">
+        <div class="column1">
+            <div class="nav">
+                <h2>Menu</h2>
+                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
+                    <li ngbNavItem="top">
+                        <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
 
-        <label for="">Identificacion del beneficiario<input type="text" style="margin-left: 6%;"/></label>
-        <br>
-        <label for="">Nombre del beneficiario<input type="text" style="margin-left: 12%;" /></label>
-        <br>
-        <label for="">Correo del beneficiario<input type="text" style="margin-left: 13%;"/></label>
-        <br>
-        <button class="transferirButton" (click)="debitar(valor.value,numCuenta.value)">Transferir</button>
-        <button class="cancelarButton">Cancelar</button>
+                    </li>
+                    <li ngbNavItem="middle">
+                        <a ngbNavLink><a routerLink="../inicio" routerLinkActive="active">Transferencia</a></a>
+
+                    </li>
+                    <li ngbNavItem="bottom">
+                        <a routerLink="../consulta" routerLinkActive="active">Tus transferencias</a>
+
+
+                    </li>
+                </ul>
+
+                <div [ngbNavOutlet]="nav" class="ml-4"></div>
+            </div>
+            <pre>Active: {{ active }}</pre>
+        </div>
+        <div class="column">
+            <div class="row" style="width: 70%;">
+                <div class="column2">
+                    <label>Institucion financiera destino*</label>
+
+                    <label>Numero de cuenta del beneficiario*</label>
+
+                    <label>Valor a transferir*</label>
+                </div>
+                <div class="column3" style="background-color:#bbb;">
+                    <select #entidad name="cars" id="cars"  required>
+                        <option value="transaccionesBancoAustro">BANCO DEL AUSTRO</option>
+                        <option value="transaccionJep">JEP</option>
+                    </select>
+
+                    <input #numCuenta type="text"  placeholder="ej.1009094303" required />
+
+                    <input #valor type="text"  placeholder="500.0" required />
+
+                </div>
+                <button class="transferirButton"
+                    (click)="transferencia(valor.value,numCuenta.value,entidad.value)">Transferir</button>
+                <button class="cancelarButton">Cancelar</button>
+            </div>
+
+
+
+        </div>
     </div>
+
 
 
 

@@ -20,9 +20,14 @@
              <div style="color: red;margin-left: 34%;">Password is required</div>
          </div>
      </div>
+     <label>Escoge tu banco</label>
+        <select #entidad name="cars" id="cars" style="margin-left: 20%;">
+            <option value="jep">JEP</option>
+            <option value="bancoA">BANCO DEL AUSTRO</option>
+        </select>
     </div>
      <div class="">
-         <button class="loginButton" (click)="logIn(usuario.value,password.value)" >
+         <button class="loginButton" (click)="logIn(usuario.value,password.value,entidad.value)" >
              <span class=""></span>
              Login
          </button>

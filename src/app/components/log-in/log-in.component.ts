@@ -22,12 +22,13 @@ export class LogInComponent implements OnInit {
   ngOnInit(): void {
     
   }
-  logIn(usuario:string,password:string){
-    this.services.login(usuario,password);
+  logIn(usuario:string,password:string,entidad:string){
+    this.services.login(usuario,password,entidad);
     if(localStorage.getItem("usuario")!=null){
       this.router.navigate(["../inicio"]);
+      localStorage.setItem("bancoOrigen",entidad);
     }else{
-      console.log("Credenciales incorrectas");
+      alert("NO SE A ENCONTRADO TU CUENTA");
     }
     
   

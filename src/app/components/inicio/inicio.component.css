@@ -1,15 +1,16 @@
-nav{
+.nav{
     background-color: tomato;
-
     color:white;
-    height: 40px;
+    height: 440px;
     display: block;
 
+
 }
-td{
+li{
     border-width: 3px;
     font-size: 20px;
-   width: 20%;
+
+   margin-top: 10%;
 }
 
 .container{
@@ -17,7 +18,7 @@ td{
     border-width: px;
     border-color: black;
     border-radius: 10px;
-    width: 60%;
+   
     height: 510px;
     margin: 2%;
     background-color: #851e3e;
@@ -28,11 +29,13 @@ div{
   
 }
 label{
-
- 
+display: block;
+ margin-top: 10%;
 }
 input{
-    margin: 20px;
+    margin-top: 10%;
+    display: block;
+    margin-left: 20%;
 }
 body{
     font-size: 19px;
@@ -44,9 +47,7 @@ body{
     grid-template-columns: 50px 300px;
     grid-template-rows: 200px 75px;
   }
-  select{
-      margin: 10px;
-  }
+ 
 .transferirButton{
     padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
@@ -81,3 +82,57 @@ body{
     margin: top 18px;
     margin-left: 24%;
 }
+
+* {
+    box-sizing: border-box;
+  }
+  .column3 {
+    float: left;
+    width: 60%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  /* Create two equal columns that floats next to each other */
+  .column2 {
+    float: left;
+    width: 40%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    background-color: #3b4d61 ;
+    color: white;
+}
+  .column1 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  .column{
+    float: left;
+    width: 80%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  header{
+      background-image: url("../../../assets/header.jpeg");
+  }
+
+  .row2:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  select{
+    margin-top: 10%;
+    margin-left: 20%;
+    display: block;
+  }
+  
