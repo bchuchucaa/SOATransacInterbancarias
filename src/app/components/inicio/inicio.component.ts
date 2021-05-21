@@ -10,10 +10,13 @@ export class InicioComponent implements OnInit {
   active = 'top';
   credenciales:any;
   idPersona:string= "";
+  nombreCliente:string="";
   constructor(private transaccions:TransaccionesService) {
     this.credenciales=localStorage.getItem("usuario");
     var json=JSON.parse(this.credenciales);
     this.idPersona=json["0"].id;
+   this.nombreCliente=json["0"].nombre+json["0"].apellido;
+   
     console.log("idPersonaid",this.idPersona);
    }
 

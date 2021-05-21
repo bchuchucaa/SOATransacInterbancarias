@@ -3,8 +3,12 @@
     color:white;
     height: 440px;
     display: block;
+  border-radius: 3px;
 
-
+}
+li:hover{
+  color: white;
+  background-color: black;
 }
 li{
     border-width: 3px;

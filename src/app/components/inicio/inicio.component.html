@@ -1,22 +1,26 @@
 <header>
-    <div style="height: 140px;"></div>
+    <div style="height: 140px;opacity: 35;">
+        <h2 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;border-bottom: blue;border-width: 3px;border-bottom-style: solid;background-color:white;">Transferencias</h2>
+        <h2 style="color:white;float: right;">{{ nombreCliente }} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
+    </div>
+    
 </header>
 
 <body>
     <div class="row">
         <div class="column1">
             <div class="nav">
-                <h2>Menu</h2>
+                <h2 style="align-content: center;text-align: center;background-color: black;"> Menu</h2>
                 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
-                    <li ngbNavItem="top">
+                    <li >
                         <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
 
                     </li>
-                    <li ngbNavItem="middle">
-                        <a ngbNavLink><a routerLink="../inicio" routerLinkActive="active">Transferencia</a></a>
+                    <li>
+                       <a routerLink="../inicio" routerLinkActive="active">Transferencia</a>
 
                     </li>
-                    <li ngbNavItem="bottom">
+                    <li>
                         <a routerLink="../consulta" routerLinkActive="active">Tus transferencias</a>
 
 
