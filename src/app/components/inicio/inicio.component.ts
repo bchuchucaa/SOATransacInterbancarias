@@ -17,7 +17,9 @@ export class InicioComponent implements OnInit {
     var json=JSON.parse(this.credenciales);
     this.idPersona=json["0"].id;
    this.nombreCliente=json["0"].nombre+json["0"].apellido;
-   
+    this.transaccions.recuperarCuentaUsuario(this.idPersona);
+    
+
     console.log("idPersonaid",this.idPersona);
    }
 

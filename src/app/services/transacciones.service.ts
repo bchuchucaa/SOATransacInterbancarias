@@ -174,7 +174,7 @@ var requestOptions = {
 };
 
 fetch("http://localhost:8081/list_all_transacctions/?entidadOperacion=jep_jepDebanco", requestOptions)
-  .then(response => response.text().then(function(text){}))
+  .then(response => response.text().then(function(text){localStorage.setItem("userTransfers",text)}))
   .then(result => console.log('lIST ALL TRANSACCTIONS',result))
   .catch(error => console.log('error', error));
 

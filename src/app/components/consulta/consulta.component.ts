@@ -29,7 +29,7 @@ export class ConsultaComponent implements OnInit {
   ngOnInit(): void {
   }
   async getCuenta() {
-     this.servicios.recuperarCuentaUsuario(this.idPersona);
+     //this.servicios.recuperarCuentaUsuario(this.idPersona);
     this.cuentaObj = localStorage.getItem("cuentaUsuario");
     var cuentajson = JSON.parse(this.cuentaObj);
     this.numCuenta = cuentajson["0"].numero_cuenta;
