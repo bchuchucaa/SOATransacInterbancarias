@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TransaccionesService } from 'src/app/services/transacciones.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class InicioComponent implements OnInit {
   credenciales:any;
   idPersona:string= "";
   nombreCliente:string="";
-  constructor(private transaccions:TransaccionesService) {
+  constructor(private transaccions:TransaccionesService,private router:Router) {
     this.credenciales=localStorage.getItem("usuario");
     var json=JSON.parse(this.credenciales);
     this.idPersona=json["0"].id;
@@ -23,10 +24,12 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  transferencia(valor:string,numCuenta:string,entidad:string){
-    console.log("values to transfer ",valor,numCuenta,this.idPersona);
-    this.transaccions.transaciones(valor,numCuenta,this.idPersona,entidad);
+  transferencia(valor:string,numCuenta:string,entidad:string,nombreDestino:string,comentario:string){
+    console.log("values to transfer ",valor,numCuenta,this.idPersona,nombreDestino,comentario);
+    this.transaccions.transaciones(valor,numCuenta,this.idPersona,entidad,nombreDestino,comentario);
   }
-
-  //
+  clearSession(){
+    localStorage.clear();
+    this.router.navigate(["../logIn"]);
+  }
 }

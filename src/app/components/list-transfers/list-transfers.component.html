@@ -1,7 +1,7 @@
 <header>
     <div style="height: 140px;">
-    
-     </div>
+
+    </div>
 </header>
 
 <body>
@@ -30,31 +30,29 @@
             <pre>Active: {{ active }}</pre>
         </div>
         <div class="column">
-            <div class="row" style="width: 70%;">
-                <div class="column2">
-                    <label>VALOR</label>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th style="width: 30%">
+                        </th>
+                        <th style="width: 70%">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data">
+                        <td>{{item.valor}}</td>
+                        <td>{{item}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                        </td>
+                    </tr>
+                </tfoot>
 
-                    <label>APELLIDO</label>
-
-                    <label>CUENTA</label>
-                    <label>SALDO</label>
-                </div>
-                <div class="column3" style="background-color:#bbb;">
-                    <label>DESTINATARIO</label>
-                    <input  type="text"  placeholder="ej.1009094303" required />
-                    <input  type="text"  placeholder="ej.1009094303" required />
-
-                    <input  type="text"  placeholder="ej.1009094303" required />
-
-                    <input  type="text"  placeholder="500.0" required />
-
-                </div>
-                <button class="transferirButton"
-                    >Transferir</button>
-                <button class="cancelarButton">Cancelar</button>
-            </div>
-
-
+                </table>
 
         </div>
     </div>
