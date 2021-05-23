@@ -145,26 +145,38 @@ saveTransaction(valor:string,numeroCuentaDestino:string,nombreDestino:string,obs
     headers: myHeaders,
     body: raw
   };
+  fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+  let entidadDestino="";
+  if(entidad=="transaccionJep"){
+    entidadDestino="jep";
+    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+  }else if(entidad=="transaccionesBancoAustro"){
+    entidadDestino="bancoA";
+    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+  }
   
-    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+   
 
-    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidad}`, requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+   
   
 }
 
 //FUNCTION TO LIST TRANSACCTIONS http://localhost:8081/list_all_transacctions/?entidadOperacion=jep_jepDebanco
-getAllTransacctions(){
+getAllTransacctions(numCuenta:string){
   var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
 var raw = JSON.stringify({
-  "numeroCuenta": "11"
+  "numeroCuenta": numCuenta
 });
 
 var requestOptions = {
@@ -173,7 +185,7 @@ var requestOptions = {
   body: raw
 };
 
-fetch("http://localhost:8081/list_all_transacctions/?entidadOperacion=jep_jepDebanco", requestOptions)
+fetch(`http://localhost:8081/list_all_transacctions/?entidadOperacion=${localStorage.getItem("bancoOrigen")}`, requestOptions)
   .then(response => response.text().then(function(text){localStorage.setItem("userTransfers",text)}))
   .then(result => console.log('lIST ALL TRANSACCTIONS',result))
   .catch(error => console.log('error', error));

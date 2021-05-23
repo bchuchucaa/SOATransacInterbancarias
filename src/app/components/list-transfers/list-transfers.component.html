@@ -1,6 +1,7 @@
 <header>
     <div style="height: 140px;">
-
+        <h2 style="color:white;float: right;">{{ nombreCliente }} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
+        <button  class="logout" (click)="clearSession()">Salir</button>
     </div>
 </header>
 
@@ -8,37 +9,31 @@
     <div class="row">
         <div class="column1">
             <div class="nav">
-                <h2>Menu</h2>
-                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
-                    <li ngbNavItem="top">
-                        <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
+                <h2 style="align-content: center;text-align: center;background-color: black;"> Menu</h2>
+                <li >
+                    <img  style="width: 15%;" src= "../../../assets/send-2.svg"> <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
+                 </li>
+                 <li>
+                     <img  style="width: 15%;" src= "../../../assets/send-2.svg"><a routerLink="../inicio" routerLinkActive="active">Transferencia</a>
+                 </li>
+                 <li>
+                     <img  style="width: 15%;" src= "../../../assets/send-2.svg"> <a routerLink="../listAllTransactions" routerLinkActive="active">Tus transferencias</a>
+                 </li>
 
-                    </li>
-                    <li ngbNavItem="middle">
-                        <a ngbNavLink><a routerLink="../inicio" routerLinkActive="active">Transferencia</a></a>
-
-                    </li>
-                    <li ngbNavItem="bottom">
-                        <a routerLink="../consulta" routerLinkActive="active">Tus transferencias</a>
-
-
-                    </li>
-                </ul>
-
-                <div [ngbNavOutlet]="nav" class="ml-4"></div>
             </div>
-            <pre>Active: {{ active }}</pre>
         </div>
         <div class="column">
+            <h2 style="margin-left: 20%;background-color: gray;width: 30%;text-align: center;">TABLA DE TRANSACCIONES </h2>
+
             <table class="table table-striped">
-                <thead>
+                <thead style="background-color: cornflowerblue;">
                     <tr>
-                        <th style="width: 20%">
-                        # CUENTA ORIGEN
+                        <th >
+                        #CUENTA ORIGEN
                         </th>
-                        <th style="width: 20%">
+                        <th >
                             
-                            # CUENTA DESTINO
+                        #CUENTA DESTINO
                         </th>
                         <th>MONTO</th>
                         <th>BENEFICIARIO</th>
@@ -46,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of transfers">
+                    <tr *ngFor="let item of transfers" class="">
                         <td>{{item.numCuentaOrigen}}</td>
                         <td>{{item.numCuentaDestino}}</td>
                         <td>{{item.monto}}</td>

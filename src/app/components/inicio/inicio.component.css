@@ -1,9 +1,11 @@
 .nav{
-    background-color: tomato;
+    background-color: white;
     color:white;
-    height: 440px;
+    height: 300px;
     display: block;
-  border-radius: 3px;
+    margin-top: 10%;
+  
+  
 
 }
 li:hover{
@@ -34,7 +36,7 @@ div{
 }
 label{
 display: block;
- margin-top: 10%;
+ margin-top: 11%;
 }
 input{
     margin-top: 10%;
@@ -94,28 +96,31 @@ body{
     float: left;
     width: 60%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 450px; /* Should be removed. Only for demonstration */
   }
   /* Create two equal columns that floats next to each other */
   .column2 {
     float: left;
     width: 40%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 450px; /* Should be removed. Only for demonstration */
     background-color: #3b4d61 ;
     color: white;
+  
 }
   .column1 {
     float: left;
     width: 20%;
-    padding: 10px;
+    padding: 35px;
     height: 300px; /* Should be removed. Only for demonstration */
+    
   }
   .column{
     float: left;
-    width: 80%;
+    width: 70%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
+    height: 400px; /* Should be removed. Only for demonstration */
+    margin-left: 10%;
   }
   
   /* Clear floats after the columns */
@@ -140,3 +145,65 @@ body{
     display: block;
   }
   
+
+
+  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+
+
+
+
+.logout {
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  color: transparent;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 20px;
+  left: 94%;
+  top:10%;
+  letter-spacing: 1.5px;
+  line-height: 50px;
+  outline: none;
+  overflow: hidden;
+  padding: 10px 0 0;
+  position: absolute;
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease-in;
+  width: 100px;
+}
+
+button::before,
+button::after {
+  background-color: white;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform-origin: center left;
+  transition: all 0.2s ease-in;
+  width: 141.4214px;
+  z-index: -1;
+}
+
+button::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+button::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+button:hover {
+  color: #8A2387;
+}
+
+button:hover::before,
+button:hover::after {
+  height: 50px;
+  transform: rotate(0deg);
+}

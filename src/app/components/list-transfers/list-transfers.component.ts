@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Transfer } from 'src/app/model/transfer';
 import { TransaccionesService } from 'src/app/services/transacciones.service';
 
@@ -11,8 +12,17 @@ export class ListTransfersComponent implements OnInit {
   active = 'top';
   data:any;
   transfers:Array<Transfer>=new Array<Transfer>();
-  constructor(private services:TransaccionesService) { 
-    services.getAllTransacctions();
+  nombreCliente:string="";
+  credenciales:any;
+  idPersona:string= "";
+  constructor(private services:TransaccionesService,private router:Router) { 
+    //user nav bar
+    this.credenciales=localStorage.getItem("usuario");
+    var json=JSON.parse(this.credenciales);
+    this.idPersona=json["0"].id;
+   this.nombreCliente=json["0"].nombre+json["0"].apellido;
+
+    //services.getAllTransacctions();
     this.data=localStorage.getItem("userTransfers");
     let dataJSON=JSON.parse(this.data);
     var res = [];
@@ -34,4 +44,8 @@ export class ListTransfersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clearSession(){
+    localStorage.clear();
+    this.router.navigate(["../logIn"]);
+  }
 }

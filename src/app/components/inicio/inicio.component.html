@@ -1,8 +1,7 @@
 <header>
     <div style="height: 140px;opacity: 35;">
-        <h2 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;border-bottom: blue;border-width: 3px;border-bottom-style: solid;background-color:white;">Transferencias</h2>
-        <h2 style="color:white;float: right;">{{ nombreCliente }} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
-        <button (click)="clearSession()">Salir</button>
+        <h2 style="color:white;float: left;margin-left: 75%;margin-top: 5%;">{{ nombreCliente }} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
+        <button style="float: left;"  class="logout" (click)="clearSession()">Salir</button>
     </div>
     
 </header>
@@ -12,28 +11,22 @@
         <div class="column1">
             <div class="nav">
                 <h2 style="align-content: center;text-align: center;background-color: black;"> Menu</h2>
-                <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills" orientation="vertical">
                     <li >
-                        <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
-
+                       <img  style="width: 15%;" src= "../../../assets/send-2.svg"> <a routerLink="../consulta" routerLinkActive="active">Mi cuenta</a>
                     </li>
                     <li>
-                       <a routerLink="../inicio" routerLinkActive="active">Transferencia</a>
-
+                        <img  style="width: 15%;" src= "../../../assets/send-2.svg"><a routerLink="../inicio" routerLinkActive="active">Transferencia</a>
                     </li>
                     <li>
-                        <a routerLink="../listAllTransactions" routerLinkActive="active">Tus transferencias</a>
-
-
+                        <img  style="width: 15%;" src= "../../../assets/send-2.svg"> <a routerLink="../listAllTransactions" routerLinkActive="active">Tus transferencias</a>
                     </li>
-                </ul>
 
-                <div [ngbNavOutlet]="nav" class="ml-4"></div>
             </div>
-            <pre>Active: {{ active }}</pre>
         </div>
         <div class="column">
-            <div class="row" style="width: 70%;">
+            <h2 style="margin-left: 20%;">TRANSFERENCIAS</h2>
+            <div class="row" style="width: 60%;">
+               
                 <div class="column2">
                     <label>Institucion financiera destino*</label>
                     <label>Numero de cuenta del beneficiario*</label>
@@ -42,6 +35,7 @@
                     <label>Comentario</label>
                 </div>
                 <div class="column3" style="background-color:#bbb;">
+                    
                     <select #entidad name="cars" id="cars"  required>
                         <option value="transaccionesBancoAustro">BANCO DEL AUSTRO</option>
                         <option value="transaccionJep">JEP</option>
@@ -57,7 +51,6 @@
                 </div>
                 <button class="transferirButton"
                     (click)="transferencia(valor.value,numCuenta.value,entidad.value,nombreDestino.value,comentario.value)">Transferir</button>
-                <button class="cancelarButton">Cancelar</button>
             </div>
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TransaccionesService } from 'src/app/services/transacciones.service';
 
 @Component({
@@ -11,12 +12,12 @@ export class ConsultaComponent implements OnInit {
   idPersona: string = "";
   credenciales: any;
   cuentaObj: any;
-  cuentaJson: string = ""
+  cuentaJson: string = "";
   nombre: string = "";
   apellido: string = "";
   numCuenta: string = "";
   saldo: string = "";
-  constructor(private servicios: TransaccionesService) {
+  constructor(private servicios: TransaccionesService,private router:Router) {
     this.credenciales = localStorage.getItem("usuario");
     var json = JSON.parse(this.credenciales);
     this.idPersona = json["0"].id;
@@ -34,6 +35,10 @@ export class ConsultaComponent implements OnInit {
     var cuentajson = JSON.parse(this.cuentaObj);
     this.numCuenta = cuentajson["0"].numero_cuenta;
     this.saldo = cuentajson["0"].saldo;
+  }
+  clearSession(){
+    localStorage.clear();
+    this.router.navigate(["../logIn"]);
   }
 
 }
