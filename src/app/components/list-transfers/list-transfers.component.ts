@@ -25,6 +25,7 @@ export class ListTransfersComponent implements OnInit {
     //services.getAllTransacctions();
     this.data=localStorage.getItem("userTransfers");
     let dataJSON=JSON.parse(this.data);
+    console.log(dataJSON);
     var res = [];
     let tmpTransfer:Transfer;
     for(var i in dataJSON){

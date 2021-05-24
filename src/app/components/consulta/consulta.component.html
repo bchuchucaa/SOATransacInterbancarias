@@ -1,8 +1,7 @@
 <header>
     <div style="height: 140px;">
-        <h2 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;border-bottom: blue;border-width: 3px;border-bottom-style: solid;background-color:white;">Transferencias</h2>
-        <h2 style="color:white;float: right;">{{ nombre }} {{apellido}} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
-        <button  class="logout" (click)="clearSession()">Salir</button>
+        <h2 style="color:white;float: left;margin-left: 75%;margin-top: 5%;">{{ nombre}} <img  style="background-color: white;height: 25px;" src="../../../assets/person-square.svg"/> </h2>
+        <button style="float: left;"  class="logout" (click)="clearSession()">Salir</button>
      </div>
 </header>
 
@@ -24,9 +23,10 @@
             
 
             </div>
-            <pre>Active: {{ active }}</pre>
         </div>
         <div class="column">
+            <h2 style="margin-left: 20%;">INFORMACION DE LA CUENTA</h2>
+
             <div class="row" style="width: 70%;">
                 <div class="column2">
                     <label>NOMBRE*</label>
@@ -42,9 +42,8 @@
                     <label>{{numCuenta}}</label>
                     <label>{{saldo}}</label>
                 </div>
-                <button class="transferirButton"
-                    >Transferir</button>
-                <button class="cancelarButton">Cancelar</button>
+                <button class="transferirButton">Refrescar</button>
+            
             </div>
 
 

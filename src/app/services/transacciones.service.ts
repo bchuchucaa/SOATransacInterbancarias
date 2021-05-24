@@ -4,11 +4,14 @@ import { map } from 'rxjs/operators';
 import { Persona } from '../model/persona';
 import { Observable } from 'rxjs';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
+import { ThrowStmt } from '@angular/compiler';
 @Injectable({
   providedIn: 'root'
 })
 export class TransaccionesService {
   bancoOrigen: any;
+  resultConversion: any;
+  resultString: string = "";
   //transferencias:Array<Object>;
   constructor(private http: HttpClient) {
 
@@ -16,7 +19,7 @@ export class TransaccionesService {
   }
 
   //METODO PARA LOGUEAR AL USUARIO DEPENDIENDO EL BANCO
-  login = async(usuario: string, password: string, entidad: string)=> {
+  login = async (usuario: string, password: string, entidad: string) => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
@@ -28,8 +31,8 @@ export class TransaccionesService {
       headers: myHeaders,
       body: raw
     };
-       return await fetch(`http://localhost:8081/loginSystem?entidad=${entidad}`, requestOptions)
-      .then(response =>  response.text().then( function (text) {  localStorage.setItem("usuario", text) }))
+    return await fetch(`http://localhost:8081/loginSystem?entidad=${entidad}`, requestOptions)
+      .then(response => response.text().then(function (text) { localStorage.setItem("usuario", text) }))
       .then(result => console.log('CuentaOrigen', result))
       .catch(error => console.log('error', error));
     console.log("json values " + localStorage.getItem("usuario"));
@@ -52,7 +55,7 @@ export class TransaccionesService {
       body: raw
     };
 
-     await fetch(`http://localhost:8081/miCuenta?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
+    await fetch(`http://localhost:8081/miCuenta?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
       .then(response => response.text().then(function (text) { localStorage.setItem("cuentaUsuario", text) }))
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -83,7 +86,7 @@ export class TransaccionesService {
       .catch(error => console.log('error', error));
     console.log("json values " + localStorage.getItem("usuario"));
     this.debitar(valor, idPersona);
-    this.saveTransaction(valor,numCuenta,nombreDestino,comentario,entidad);
+    this.saveTransaction(valor, numCuenta, nombreDestino, comentario, entidad);
   }
 
   //DEBITO DE LA CUENTA POR TRANSFERENCIA
@@ -123,74 +126,105 @@ export class TransaccionesService {
   }
 
   //FUNCTION TO SAVE TRANSFER
-saveTransaction(valor:string,numeroCuentaDestino:string,nombreDestino:string,observacion:string,entidad:string)
-{
-  var cuentaObj: any;
+  saveTransaction(valor: string, numeroCuentaDestino: string, nombreDestino: string, observacion: string, entidad: string) {
+    var cuentaObj: any;
 
     cuentaObj = localStorage.getItem("cuentaUsuario");
     let cuentajson = JSON.parse(cuentaObj);
 
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  var raw = JSON.stringify({
-    "id":1,
-    "monto": valor,
-    "numero_cuenta_destino":numeroCuentaDestino,
-    "numero_cuenta_origen": cuentajson[0].numero_cuenta,
-    "persona_nombre_destino": nombreDestino,
-    "tipo_transaccion":observacion
-  });
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw
-  };
-  fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-  let entidadDestino="";
-  if(entidad=="transaccionJep"){
-    entidadDestino="jep";
-    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-  }else if(entidad=="transaccionesBancoAustro"){
-    entidadDestino="bancoA";
-    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      "id": 1,
+      "monto": valor,
+      "numero_cuenta_destino": numeroCuentaDestino,
+      "numero_cuenta_origen": cuentajson[0].numero_cuenta,
+      "persona_nombre_destino": nombreDestino,
+      "tipo_transaccion": observacion
+    });
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
+    fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${localStorage.getItem("bancoOrigen")}`, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+    let entidadDestino = "";
+    let entidadEqual = "";
+
+    if (entidad == "transaccionJep") {
+      entidadDestino = "jep";
+      if (entidadDestino != localStorage.getItem("bancoOrigen")) {
+        fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+      }
+    } else if (entidad == "transaccionesBancoAustro") {
+      entidadDestino = "bancoA";
+      if (entidadDestino != localStorage.getItem("bancoOrigen")) {
+        fetch(`http://localhost:8081/saveTrasaccionsSystem/?entidad=${entidadDestino}`, requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+      }
+    }
+
+
   }
-  
-   
 
-   
-  
-}
+  //FUNCTION TO LIST TRANSACCTIONS http://localhost:8081/list_all_transacctions/?entidadOperacion=jep_jepDebanco
+  getAllTransacctions(numCuenta: string) {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-//FUNCTION TO LIST TRANSACCTIONS http://localhost:8081/list_all_transacctions/?entidadOperacion=jep_jepDebanco
-getAllTransacctions(numCuenta:string){
-  var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify({
+      "numeroCuenta": numCuenta
+    });
 
-var raw = JSON.stringify({
-  "numeroCuenta": numCuenta
-});
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw
-};
+    fetch(`http://localhost:8081/list_all_transacctions/?entidadOperacion=${localStorage.getItem("bancoOrigen")}`, requestOptions)
+      .then(response => response.text().then(function (text) { localStorage.setItem("userTransfers", text) }))
+      .then(result => console.log('lIST ALL TRANSACCTIONS', result))
+      .catch(error => console.log('error', error));
 
-fetch(`http://localhost:8081/list_all_transacctions/?entidadOperacion=${localStorage.getItem("bancoOrigen")}`, requestOptions)
-  .then(response => response.text().then(function(text){localStorage.setItem("userTransfers",text)}))
-  .then(result => console.log('lIST ALL TRANSACCTIONS',result))
-  .catch(error => console.log('error', error));
-
-}
+  }
 
 
+  //Cloud function to currency conversion
+  async convertCurrency(value: string) {
+    var requestOptions = {
+      method: 'GET'
+    };
+    fetch(`https://v6.exchangerate-api.com/v6/c029c6144331c4c5fba5a775/pair/USD/AED/${value}`, requestOptions)
+      .then(response => response.text().then((text) => { localStorage.setItem("conversion", text) }))
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
+  getMonedas() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "numeroCuenta": "11"
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw
+    };
+    fetch("http://localhost:8081/listarMonedas", requestOptions)
+      .then(response => response.text().then(function (text) { localStorage.setItem("monedas", text) }))
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
 }

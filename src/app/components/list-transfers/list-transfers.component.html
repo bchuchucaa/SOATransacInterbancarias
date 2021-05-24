@@ -41,10 +41,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of transfers" class="">
+                    <tr *ngFor="let item of transfers" class="" style="background-color: #3b4d61;color: yellow;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 12px;">
                         <td>{{item.numCuentaOrigen}}</td>
                         <td>{{item.numCuentaDestino}}</td>
-                        <td>{{item.monto}}</td>
+                        <td>${{item.monto}}</td>
                         <td>{{item.personaDestino}}</td>
                         <td>{{item.tipoTransaccion}}</td>
                     </tr>

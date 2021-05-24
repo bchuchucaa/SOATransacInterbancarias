@@ -44,7 +44,7 @@
                     <input #numCuenta type="text"  placeholder="ej.1009094303" required />
                     <input #nombreDestino type="text"  placeholder="ej.Caleb Alva" required />
 
-                    <input #valor type="text"  placeholder="$500.0" required />
+                    <input #valor type="text"  placeholder="$500.0"  required />
                     <input #comentario type="text"  placeholder="ej.pago de renta" required />
 
 
@@ -57,7 +57,60 @@
 
         </div>
     </div>
-
+    <div class="container">
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/design_128.png?raw=true">
+                    <h3>Conversor</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <div class="wrapper" style="display: grid;  grid-template-columns: 40% 40%;
+                    ">
+                        <div><label>Valor</label></div>
+                        <div><input type="text" #inputConvert style="width: 75%;" placeholder="EX.59.99"/></div>
+                        <div><button (click)="convert(inputConvert.value)">Convertir</button></div>
+                        <div><label style="width: 75%;" >{{ resultConvert }}</label></div>
+                        
+                     </div>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/code_128.png?raw=true">
+                    <h3>MONEDAS</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <select   class="monedas"  name="select" *ngFor="let item of monedero" size="1">
+                        <option>{{item.valor}}</option>
+                        
+                      </select>
+                      
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="face face1">
+                <div class="content">
+                    <img src="https://github.com/Jhonierpc/WebDevelopment/blob/master/CSS%20Card%20Hover%20Effects/img/launch_128.png?raw=true">
+                    <h3>Launch</h3>
+                </div>
+            </div>
+            <div class="face face2">
+                <div class="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

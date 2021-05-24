@@ -1,27 +1,23 @@
 
 
 <body>
-   <div style="background-color: white;">Transacciones Bancarias</div>
- <form class="container">
+    <img class="asistant" src="../../../assets/assistant.gif"/>
+
+    <form class="container">
+        <div class="messageAsis"></div>
      <h2 style="margin-left: 24%;font-family: Verdana, Geneva, Tahoma, sans-serif; float: left;">BANCA MOVIL </h2> <img style="width: 10%; float: right;" src="../../../assets/briefcase-2.svg"/>
+     <p>Ingresa tus credenciales <br><a href="https://codepen.io/grohit/"></a></p>
      <img  class="imgLogo" src="../../../assets/Banca-movil.png"/>
      <div class="box"> 
-     <div class="form-group" style="margin-bottom: 5%;">
          <label for="username">Username</label>
-         <input type="text" #usuario class="form-control"  style="margin-top: 10px;"/>
-         <div  class="invalid-feedback">
-             <div style="color: red;margin-left: 34%;">Username is required</div>
-         </div>
-     </div>
-     <div class="form-group">
+         <input id="usuario" name="usuario" type="text" #usuario class="form-control" required/>
          <label for="password">Password</label>
-         <input type="password"  #password formControlName="password" class="form-control" />
+         <input type="password"  #password formControlName="password" class="form-control" required/>
          <div  class="invalid-feedback">
              <div style="color: red;margin-left: 34%;">Password is required</div>
          </div>
-     </div>
      <label>Escoge tu banco</label>
-        <select #entidad name="cars" id="cars" style="margin-left: 20%;">
+        <select #entidad  id="entidad" style="margin-left: 20%;">
             <option value="jep">JEP</option>
             <option value="bancoA">BANCO DEL AUSTRO</option>
         </select>
@@ -32,7 +28,7 @@
              Login
          </button>
          <button class="registerLink">
-            <span class=""></span>
+         
            Registrate
         </button>
      </div>
