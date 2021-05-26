@@ -19,7 +19,7 @@ export class TransaccionesService {
   }
 
   //METODO PARA LOGUEAR AL USUARIO DEPENDIENDO EL BANCO
-  login = async (usuario: string, password: string, entidad: string) => {
+ async  login (usuario: string, password: string, entidad: string) {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({
@@ -31,11 +31,12 @@ export class TransaccionesService {
       headers: myHeaders,
       body: raw
     };
-    return await fetch(`http://localhost:8081/loginSystem?entidad=${entidad}`, requestOptions)
-      .then(response => response.text().then(function (text) { localStorage.setItem("usuario", text) }))
+    await fetch(`http://localhost:8081/loginSystem?entidad=${entidad}`, requestOptions)
+      .then(async response => await response.text().then( function (text) { localStorage.setItem("usuario", text) }))
       .then(result => console.log('CuentaOrigen', result))
       .catch(error => console.log('error', error));
     console.log("json values " + localStorage.getItem("usuario"));
+  
   }
   //METODO PARA RECUPERAR LA CUENTA DEL CLIENTE
 
@@ -86,6 +87,7 @@ export class TransaccionesService {
       .catch(error => console.log('error', error));
     console.log("json values " + localStorage.getItem("usuario"));
     this.debitar(valor, idPersona);
+    console.log("comentario a transferir  "+comentario);
     this.saveTransaction(valor, numCuenta, nombreDestino, comentario, entidad);
   }
 
@@ -128,6 +130,7 @@ export class TransaccionesService {
   //FUNCTION TO SAVE TRANSFER
   saveTransaction(valor: string, numeroCuentaDestino: string, nombreDestino: string, observacion: string, entidad: string) {
     var cuentaObj: any;
+    console.log("comentario a transferir funcion  "+observacion);
 
     cuentaObj = localStorage.getItem("cuentaUsuario");
     let cuentajson = JSON.parse(cuentaObj);
@@ -140,7 +143,7 @@ export class TransaccionesService {
       "numero_cuenta_destino": numeroCuentaDestino,
       "numero_cuenta_origen": cuentajson[0].numero_cuenta,
       "persona_nombre_destino": nombreDestino,
-      "tipo_transaccion": observacion
+      "tipo_transacion": observacion
     });
     var requestOptions = {
       method: 'POST',
@@ -203,7 +206,7 @@ export class TransaccionesService {
     var requestOptions = {
       method: 'GET'
     };
-    fetch(`https://v6.exchangerate-api.com/v6/c029c6144331c4c5fba5a775/pair/USD/AED/${value}`, requestOptions)
+    await fetch(`https://v6.exchangerate-api.com/v6/c029c6144331c4c5fba5a775/pair/USD/EUR/${value}`, requestOptions)
       .then(response => response.text().then((text) => { localStorage.setItem("conversion", text) }))
       .then(result => console.log(result))
       .catch(error => console.log('error', error));

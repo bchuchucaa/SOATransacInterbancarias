@@ -21,8 +21,6 @@ export class ListTransfersComponent implements OnInit {
     var json=JSON.parse(this.credenciales);
     this.idPersona=json["0"].id;
    this.nombreCliente=json["0"].nombre+json["0"].apellido;
-
-    //services.getAllTransacctions();
     this.data=localStorage.getItem("userTransfers");
     let dataJSON=JSON.parse(this.data);
     console.log(dataJSON);
@@ -34,7 +32,7 @@ export class ListTransfersComponent implements OnInit {
       tmpTransfer.monto=dataJSON[i].monto;
       tmpTransfer.numCuentaDestino=dataJSON[i].numero_cuenta_destino;
       tmpTransfer.numCuentaOrigen=dataJSON[i].numero_cuenta_origen;
-      tmpTransfer.tipoTransaccion=dataJSON[i].tipo_transaccion;
+      tmpTransfer.tipoTransaccion=dataJSON[i].tipo_transacion;
       tmpTransfer.personaDestino=dataJSON[i].persona_nombre_destino;
       this.transfers.push(tmpTransfer);
     }

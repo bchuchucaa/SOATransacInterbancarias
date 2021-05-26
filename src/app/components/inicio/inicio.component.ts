@@ -26,27 +26,31 @@ export class InicioComponent implements OnInit {
     var json = JSON.parse(this.credenciales);
     this.idPersona = json["0"].id;
     this.nombreCliente = json["0"].nombre + json["0"].apellido;
-    this.transaccions.recuperarCuentaUsuario(this.idPersona);
-    this.cuentaObj = localStorage.getItem("cuentaUsuario");
-    var cuentajson = JSON.parse(this.cuentaObj);
-    this.numCuenta = cuentajson["0"].numero_cuenta;
-    transaccions.getAllTransacctions(this.numCuenta);
-    this.transaccions.getMonedas();
-   
-    this.monedas=localStorage.getItem("monedas");
-    let jsonmonedas= JSON.parse(this.monedas);
-    console.log(jsonmonedas.conversion_rates);
-    this.clave=Object.keys(jsonmonedas);
-    let counter=1;
-    for(var i in jsonmonedas.conversion_rates){   
-      if(counter<5){
-        let m= new Moneda();
-        console.log(i.valueOf());
-        m.valor=i.valueOf();
-        this.monedero.push(m);
-      } 
-      counter++;
+    try{
+      this.transaccions.recuperarCuentaUsuario(this.idPersona);
+      this.cuentaObj = localStorage.getItem("cuentaUsuario");
+      var cuentajson = JSON.parse(this.cuentaObj);
+      this.numCuenta = cuentajson["0"].numero_cuenta;
+      transaccions.getAllTransacctions(this.numCuenta);
+      this.transaccions.getMonedas();
+      this.monedas=localStorage.getItem("monedas");
+      let jsonmonedas= JSON.parse(this.monedas);
+      console.log(jsonmonedas.conversion_rates);
+      this.clave=Object.keys(jsonmonedas);
+      let counter=1;
+      for(var i in jsonmonedas.conversion_rates){   
+        if(counter<5){
+          let m= new Moneda();
+          console.log(i.valueOf());
+          m.valor=i.valueOf();
+          this.monedero.push(m);
+        } 
+        counter++;
+      }
+    }catch(error){
+
     }
+    
       
   
     console.log("idPersonaid", this.idPersona);
@@ -59,6 +63,7 @@ export class InicioComponent implements OnInit {
     console.log("values to transfer ", valor, numCuenta, this.idPersona, nombreDestino, comentario);
     if (confirm("¿Estas seguro de realizar esta transaccion?")) {
       try {
+        console.log("comentario a guardar,",comentario);
         this.transaccions.transaciones(valor, numCuenta, this.idPersona, entidad, nombreDestino, comentario);
         alert("Se ha realizado con exito su transaccion :) ");
       } catch (error) {

@@ -34,7 +34,8 @@ export class ConsultaComponent implements OnInit {
     this.cuentaObj = localStorage.getItem("cuentaUsuario");
     var cuentajson = JSON.parse(this.cuentaObj);
     this.numCuenta = cuentajson["0"].numero_cuenta;
-    this.saldo = cuentajson["0"].saldo;
+    
+    this.saldo = parseFloat(cuentajson["0"].saldo).toFixed(2);
   }
   clearSession(){
     localStorage.clear();
